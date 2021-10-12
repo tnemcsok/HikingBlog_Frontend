@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Aclonica&display=swap");
+
+.activePagination {
+  background-color: #1266f1;
+  color: white;
+}
+
+.search {
+  width: 250px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.floated-element {
+  transform: translate(-10px, -10px);
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.ephesis {
+  font-family: "Ephesis", cursive;
+  font-size: 1.5rem;
+}
+
+.aclonica {
+  font-family: "Aclonica", sans-serif;
+}
+
+.background {
+  background-color: rgb(238, 238, 238);
+}
+
+.round {
+  border-radius: 20px;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.closeBtn {
+  display: block;
+  background-color: transparent;
+  border: none;
+  color: black;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  padding: 0;
+  font-size: 25px;
+  margin-top: 0;
+}
