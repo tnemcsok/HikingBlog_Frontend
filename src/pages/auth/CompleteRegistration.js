@@ -64,7 +64,7 @@ const CompleteRegistration = () => {
   };
 
   return (
-    <div className="container p-5">
+    <div className="w-50 background round m-auto p-5">
       {loading ? (
         <h4 className="text-danger">Loading...</h4>
       ) : (

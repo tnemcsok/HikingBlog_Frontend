@@ -18,6 +18,8 @@ const FileUpload = ({
     let fileInput = false;
     if (event.target.files[0]) {
       fileInput = true;
+    } else {
+      setLoading(false);
     }
     if (fileInput) {
       // Resize the image with Resizer
