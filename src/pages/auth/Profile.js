@@ -1,10 +1,15 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { toast } from "react-toastify";
 import { useQuery, useMutation } from "@apollo/client";
 import { PROFILE } from "../../graphql/queries";
-import { USER_UPDATE } from "../../graphql/mutations";
+import { USER_UPDATE, USER_DELETE } from "../../graphql/mutations";
 import UserProfile from "../../components/forms/UserProfile";
 import FileUpload from "../../components/FileUpload";
+import { useHistory } from "react-router";
+import { AuthContext } from "../../context/authContext";
+import firebase from "firebase";
+import { auth } from "../../firebase";
+import { GET_ALL_HIKES } from "../../graphql/queries";
 
 const Profile = () => {
   // State
@@ -13,10 +18,13 @@ const Profile = () => {
     name: "",
     email: "",
     about: "",
+    age: 0,
+    gender: "male",
     images: [],
   });
-
   const [loading, setLoading] = useState(false);
+  const { state, dispatch } = useContext(AuthContext);
+  let history = useHistory();
 
   const { data } = useQuery(PROFILE);
 
@@ -26,6 +34,7 @@ const Profile = () => {
       toast.success("Profile updated");
     },
   });
+  const [userDelete] = useMutation(USER_DELETE);
 
   //Remove __typename from image object
   const omitTypename = (key, value) =>
@@ -58,7 +67,43 @@ const Profile = () => {
 
   // Put the values in the form to state
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    let { name, value, type } = e.target;
+    if (type === "number") {
+      value = parseInt(value);
+      console.log(value);
+    }
+    setValues({ ...values, [name]: value });
+  };
+
+  // Handle logout
+  const logout = async () => {
+    await firebase.auth().signOut();
+    dispatch({
+      type: "LOGGED_IN_USER",
+      payload: null,
+    });
+    history.push("/login");
+  };
+
+  // Delete the user
+  const handleDelete = (e) => {
+    // Confirm delete
+    let answer = window.confirm("Are you sure you want to delete user?");
+
+    if (answer) {
+      userDelete();
+      auth.currentUser
+        // Delete user
+        .delete()
+        .then(() => {
+          toast.success("User deleted");
+        })
+        .catch((error) => {
+          // Show error messages
+          toast.error(error.message);
+        });
+      logout();
+    }
   };
 
   return (
@@ -84,6 +129,7 @@ const Profile = () => {
         {...values}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleDelete={handleDelete}
         loading={loading}
       />
     </div>

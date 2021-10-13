@@ -47,8 +47,8 @@ const SingleUser = () => {
         <div className="col-md-3 p-3 border background round text-dark">
           <h4 className="font-weight-bold text-center mb-2">Info</h4>
           <p>Name: {data && data.publicProfile.name}</p>
-          <p>Age: 30</p>
-          <p>Gender: Male</p>
+          <p>Age: {(data && data.publicProfile.age) || "N/A"}</p>
+          <p>Gender: {(data && data.publicProfile.gender) || "N/A"}</p>
         </div>
       </div>
 

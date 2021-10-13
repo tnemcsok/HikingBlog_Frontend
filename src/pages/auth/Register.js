@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import AuthForm from "../../components/forms/AuthForm";
@@ -7,6 +8,7 @@ const Register = () => {
   // State
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  let history = useHistory();
 
   // Handle registration
   const handleSubmit = async (e) => {
@@ -28,6 +30,10 @@ const Register = () => {
 
     // Save user email to local storage
     window.localStorage.setItem("emailForRegistration", email);
+
+    // Redirect to home page
+
+    history.push("/");
 
     // Clear state
     setEmail("");

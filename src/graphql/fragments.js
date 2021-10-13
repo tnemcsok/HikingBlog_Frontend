@@ -6,6 +6,8 @@ export const USER_INFO = gql`
     name
     username
     email
+    age
+    gender
     images {
       url
       public_id

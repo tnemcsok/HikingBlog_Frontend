@@ -21,17 +21,10 @@ export const ALL_USERS = gql`
 `;
 
 export const PUBLIC_PROFILE = gql`
+  ${USER_INFO}
   query publicProfile($username: String!) {
     publicProfile(username: $username) {
-      _id
-      username
-      name
-      email
-      images {
-        url
-        public_id
-      }
-      about
+      ...UserInfo
     }
   }
 `;

@@ -3,10 +3,13 @@ import React from "react";
 const UserProfile = ({
   handleSubmit,
   handleChange,
+  handleDelete,
   username,
   name,
   email,
   about,
+  age,
+  gender,
   loading,
 }) => (
   <form onSubmit={handleSubmit}>
@@ -48,6 +51,31 @@ const UserProfile = ({
         disabled
       />
     </div>
+    <div className="row mt-3">
+      <div className="col-md-6">
+        <label>Age</label>
+        <input
+          type="number"
+          name="age"
+          value={age}
+          onChange={handleChange}
+          className="form-control"
+          placholder="age"
+        />
+      </div>
+      <div className="col-md-6">
+        <label>Gender</label>
+        <select
+          name="gender"
+          value={gender}
+          onChange={handleChange}
+          className="form-control"
+        >
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
+      </div>
+    </div>
 
     <div className="form-group mt-3">
       <label>About</label>
@@ -60,14 +88,27 @@ const UserProfile = ({
         disabled={loading}
       />
     </div>
-
-    <button
-      className="btn btn-primary d-block m-auto mt-5"
-      type="submit"
-      disabled={!email || loading}
-    >
-      Submit
-    </button>
+    <div className="row">
+      <div className="col-md-6">
+        <button
+          className="btn btn-primary d-block m-auto mt-5"
+          type="submit"
+          disabled={!email || loading}
+        >
+          Submit
+        </button>
+      </div>
+      <div className="col-md-6">
+        <button
+          className="btn btn-danger d-block m-auto mt-5"
+          type="button"
+          onClick={handleDelete}
+          disabled={!email || loading}
+        >
+          Delete account
+        </button>
+      </div>
+    </div>
   </form>
 );
 

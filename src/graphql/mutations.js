@@ -20,6 +20,14 @@ export const USER_UPDATE = gql`
   }
 `;
 
+export const USER_DELETE = gql`
+  mutation userDelete {
+    userDelete {
+      _id
+    }
+  }
+`;
+
 export const HIKE_CREATE = gql`
   mutation hikeCreate($input: HikeCreateInput!) {
     hikeCreate(input: $input) {
