@@ -1,4 +1,4 @@
-Hiking blog application using graphql, react and node. The application is connected to a Mongo DB database. The authentication is handled by Firebase. Check the deployer version here: https://hikingblog.herokuapp.com/
+Hiking blog application using graphql, react and node. The application is connected to a Mongo DB database. The authentication is handled by Firebase. Check the deployed version here: https://hikingblog.herokuapp.com/
 
 ## About
 
